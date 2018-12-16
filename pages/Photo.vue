@@ -1,14 +1,25 @@
 <template>
   <section class="photo" >
-    <div class="item item1">Banner</div>
+    
+    <Banner class="item"/>
     <div class="item item2">High</div>
     <div class="item item3">Insta</div>
-    <div class="item item4">Gallery</div>
+    <div class="item item4">
+      Gallery
+      <button class="button is-primary has-gradient">
+        See galleries
+      </button>
+    </div>
   </section>
 </template>
 
 <script>
-export default {}
+import Banner from '../components/Banner.vue'
+export default {
+  components: {
+    Banner
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -26,14 +37,11 @@ export default {}
 }
 .item {
   height: 300px;
-  background-color: $primary;
+  background-color: darken($white, 3);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 1rem;
-}
-.item1 {
-  grid-area: banner;
 }
 .item2 {
   grid-area: high;

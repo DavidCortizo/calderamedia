@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss">
 html {
-  font-family: $arsenal;
+  font-family: $family-primary;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

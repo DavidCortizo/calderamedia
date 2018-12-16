@@ -14,7 +14,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Arsenal|Julius+Sans+One' }]
+    link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Arsenal|Julius+Sans+One'
+      }
+    ]
   },
 
   router: {
@@ -32,7 +37,6 @@ module.exports = {
   */
   css: [
     '@/assets/css/reset.css',
-    // 'bulma',
     '@/assets/css/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css'
   ],

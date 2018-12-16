@@ -2,7 +2,9 @@
   <nav class="nav">
     <div class="nav_content_wrapper">
       <div class="nav_brand">
-        <nuxt-link exact class="active-link--not" to="/">logo</nuxt-link>
+        <nuxt-link exact class="nav_brand_logo active-link--not" to="/">
+          <img class="nav_brand_img" src="../static/logo/logo_calderamedia.svg" alt="Caldera Media logo">
+        </nuxt-link>
       </div>
       <div class="nav_title">{{ title }}</div>
       <ul class="nav_menu" >
@@ -74,11 +76,21 @@ export default {
   padding: 0 1rem;
   margin: 0 auto;
 }
-.nav_brand_logo {
-  background-color: transparent;
+.nav_brand {
+  height: 75%;
+
+  .nav_brand_logo {
+    height: 100%;
+  }
+  .nav_brand_img {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+  }
 }
 .nav_title {
   position: absolute;
+  font-family: $julius;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -87,21 +99,59 @@ export default {
   display: flex;
   list-style: none;
   margin-left: auto;
-}
-.nav_item {
-}
-.nav_link {
-  text-decoration: none;
-  color: $black;
-  padding: 0.8rem 0.5rem;
-}
-/* .exact-active-link {
-  background-color: $primary;
-} */
-.active-link {
-  background-color: $primary;
-}
-.active-link--not {
-  background-color: transparent;
+
+  .nav_item {
+    padding: 0rem 0.5rem;
+  }
+  .nav_link {
+    text-decoration: none;
+    color: $black;
+    position: relative;
+
+    transform-origin: -20%;
+    &::after {
+      content: '';
+      width: 0%;
+      position: absolute;
+      border-radius: 10px;
+      height: 3px;
+      bottom: -4px;
+      left: -10%;
+      background-color: transparent;
+      transform-origin: -20%;
+      transition: opacity0.3s ease-in-out, width 0.3s ease-in-out,
+        height 0.1s ease-in-out, background-color 0.3s ease-in-out;
+    }
+    &:hover {
+      &::after {
+        content: '';
+        width: 120%;
+        position: absolute;
+        border-radius: 10px;
+        height: 3px;
+        bottom: -4px;
+        transform-origin: -20%;
+        background-color: rgba($primary, 0.8);
+        background-image: $gradient;
+        opacity: 0.8;
+      }
+    }
+  }
+  /* Active */
+  .active-link {
+    &::after {
+      content: '';
+      width: 120%;
+      position: absolute;
+      border-radius: 10px;
+      height: 3px;
+      bottom: -4px;
+      background-color: rgba($primary, 0.8);
+      background-image: $gradient;
+    }
+  }
+  .active-link--not {
+    background-color: transparent;
+  }
 }
 </style>

@@ -1,0 +1,17 @@
+.has-gradient {
+    background-image: $gradient;
+}
+.is-hovered {
+  background-image: $gradient-inverse;
+}
+.button {
+  transition: all .3s ease-in-out;
+  position: relative;
+
+  &.is-primary {
+    box-shadow: map-get($box-shadow, 1);
+    &:hover {
+      box-shadow: map-get($box-shadow, 2);
+    }
+  }
+}
