@@ -1,10 +1,29 @@
 <template>
   <form id="newsLetterForm" class="form" action="" >
-    <div class="form_fild">
-      <label for="name" class="field_label">label</label>
-      <input v-model="name" type="text" class="field_input" name="name">
+
+    <div class="field">
+      <label for="name" class="label"> {{ nameLabel }} </label>
+      <div class="control has-icons-left">
+        <input v-model="name" class="input is-primary" type="text" placeholder="Name" name="name">
+        <span class="icon is-small is-left is-flex u_j-c-c u_a-i-c">
+          <font-awesome-icon :icon="['fas', 'user']" />
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email" class="label"> {{ emailLabel }} </label>
+      <div class="control has-icons-left">
+        <input v-model="name" class="input is-primary" type="email" placeholder="Email" name="email">
+        <span class="icon is-small is-left is-flex u_j-c-c u_a-i-c">
+          <font-awesome-icon :icon="['fas', 'envelope']" />
+        </span>
+      </div>
     </div>
     {{ name }}
+    <button class="button is-primary has-gradient">
+      {{ sumbitLabel }}
+    </button>
   </form>
 </template>
 
@@ -14,7 +33,10 @@ export default {
     return {
       errors: [],
       name: null,
-      email: null
+      email: null,
+      nameLabel: 'Name',
+      emailLabel: 'Email',
+      sumbitLabel: 'Subscribe to newsletter'
     }
   },
   methods: {
@@ -44,5 +66,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.label {
+  display: none;
+}
 </style>

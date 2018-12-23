@@ -1,0 +1,5 @@
+@mixin object($width, $height, $bg) {
+  width: $width + px;
+  height: $height + px;
+  background-color: $bg;
+}

@@ -3,15 +3,33 @@
     <div class="nav_content_wrapper">
       <div class="nav_brand">
         <nuxt-link exact class="nav_brand_logo active-link--not" to="/">
-          <img class="nav_brand_img" src="../static/logo/logo_calderamedia.svg" alt="Caldera Media logo">
+          <img
+            class="nav_brand_img"
+            src="../static/logo/logo_calderamedia.svg"
+            alt="Caldera Media logo"
+          >
         </nuxt-link>
       </div>
-      <div class="nav_title">{{ title }}</div>
-      <ul class="nav_menu" >
-        <li v-for="link in navItems" :key="link.title" class="nav_item" >
+      <div class="nav_title is-size-4 has-text-weight-bold">{{ title }}</div>
+      <ul class="nav_menu is-hidden-touch">
+        <li v-for="link in navItems" :key="link.title" class="nav_item">
           <nuxt-link :to="link.url" class="nav_link">{{ link.title }}</nuxt-link>
         </li>
       </ul>
+
+      <div class="mobile_nav is-hidden-desktop">
+        <div class="menu_icon" @click="toggleNav">
+          <transition name="fade" >
+            <div v-if="!visible" key="open" class="menu_icon--open"/>
+            <div v-else key="close" class="menu_icon--closed"/>
+          </transition>
+        </div>
+        <ul v-if="visible" class="nav_menu--mobile">
+          <li v-for="link in navItems" :key="link.title" class="nav_item">
+            <nuxt-link :to="link.url" class="nav_link">{{ link.title }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>
@@ -20,6 +38,7 @@
 export default {
   data() {
     return {
+      visible: false,
       title: '',
       navItems: [
         {
@@ -56,12 +75,24 @@ export default {
     } else {
       this.title = this.$route.name
     }
+  },
+  methods: {
+    toggleNav() {
+      this.visible = !this.visible
+    }
   }
 }
 </script>
 
 
 <style lang="scss" scoped>
+/* scoped mixins */
+@mixin menuBar($width: 40, $height: 5, $bg: $primary) {
+  @include object($width, $height, $bg);
+  background-image: $gradient;
+  border-radius: $radius;
+}
+
 .nav {
   height: 60px;
   position: relative;
@@ -153,5 +184,69 @@ export default {
   .active-link--not {
     background-color: transparent;
   }
+}
+
+.mobile_nav {
+  margin-left: auto;
+  height: 100%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .menu_icon {
+    height: 100%;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  .menu_icon--open {
+    @include menuBar(25);
+    position: relative;
+    &::before {
+      content: '';
+      @include menuBar();
+      position: absolute;
+      top: -10px;
+    }
+    &::after {
+      content: '';
+      @include menuBar();
+      position: absolute;
+      bottom: -10px;
+    }
+  }
+  .menu_icon--closed {
+    @include menuBar(25, 5, transparent);
+    background-image: none;
+    position: relative;
+    &::before {
+      content: '';
+      @include menuBar();
+      position: absolute;
+      top: 0;
+      transform: rotate(-45deg);
+    }
+    &::after {
+      content: '';
+      @include menuBar();
+      position: absolute;
+      bottom: 0;
+      transform: rotate(45deg);
+    }
+  }
+  .nav_menu--mobile {
+    display: none;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

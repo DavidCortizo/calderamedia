@@ -1,8 +1,11 @@
 
 @import 'scss/variables';
+@import 'scss/mixins';
+@import 'scss/utils';
 
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
 @import "../../node_modules/bulma/sass/base/_all.sass";
 @import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/form.sass";
 
 @import 'scss/modifiers';

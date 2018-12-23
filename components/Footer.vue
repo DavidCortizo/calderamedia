@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer_top">
-      <a class="footer_prints footer_top_item">
+      <a class="footer_prints footer_top_item is-italic is-size-4 has-text-centered">
         {{ print.body }}
         <span class="footer_prints_cta">
           {{ print.cta }}
@@ -10,12 +10,12 @@
       <div class="footer_social footer_top_item">
         <template v-for="icon in socialIcons">
           <a :href="icon.href" :key="icon.icon" target="_blank" class="footer_social_item" >
-            <font-awesome-icon :icon="[icon.prefix, icon.icon]" />
+            <font-awesome-icon :icon="[icon.prefix, icon.icon]" class="icon"/>
           </a>
         </template>
       </div>
       <div class="footer_newsletter footer_top_item">
-        <h3 class="newsletter_title">
+        <h3 class="newsletter_title is-size-5 is-italic has-text-weight-bold has-text-centered">
           Never miss new galleries
         </h3>
         <NewsLetterForm />
@@ -76,7 +76,7 @@ footer {
 .footer_top {
   width: 100%;
   max-width: 1200px;
-  height: 200px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -85,11 +85,20 @@ footer {
 }
 .footer_top_item {
   width: 33%;
-  /* padding: 1rem; */
 }
 .footer_prints {
   display: flex;
   flex-direction: column;
+  color: $black;
+  &:hover {
+    .footer_prints_cta {
+      color: $primary;
+    }
+  }
+}
+.footer_prints_cta {
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
 }
 .footer_social {
   display: flex;
@@ -98,6 +107,16 @@ footer {
 .footer_social_item {
   color: $black;
   font-size: 2rem;
+  .icon {
+    color: $gradient;
+  }
+  &:hover {
+    color: $primary;
+    transition: color 0.3s ease-in-out;
+  }
+}
+.newsletter_title {
+  margin-bottom: 1rem;
 }
 .footer_bottom {
   background-color: $black;
